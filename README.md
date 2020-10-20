@@ -1,36 +1,17 @@
 # Music Machine Learning - ATIAM
 
-## Tutorial 
+This repository contains the most up to date courses in machine learning applied to music computing given along the ATIAM Masters at IRCAM. The courses slides along with a set of interactive Jupyter Notebooks will be updated along the year to provide all the ML program.
 
-<div markdown = "1">
+**As the development of this course is ongoing, please pull this repo regularly to stay updated**
 
-In this introduction, we will cover basic Music Information Retrieval (MIR) interactions, in which we process a dataset of sound files and try to observe the properties of their various temporal and spectral features. Hence, we will quickly review basic calculus required to perform further machine learning tasks. This tutorial is also intended to review basic Matlab coding and plotting operations.
+Please first follow the installation procedure (see next section) to ensure that you have all necessary libraries to follow the course smoothly. You also need to get the audio datasets from this [link ![](../images/file.png)](https://nuage.ircam.fr/index.php/s/FTsaaAMFV1jEwsk)   
 
-</div>{: .notice--blank}
+## Installation and dependencies
 
-## 0.0 - Reference code
 
-<div markdown = "1">
-
-Along the tutorials, we provide a reference code for each section. This code contains helper functions that will alleviate you from the burden of data import and other sideline implementations. You will find designated spaces in each file to develop your solutions.  **The newest version of this course is being actively developed as a set of Python Notebooks, that you can find at the following repo (that you should clone)**
-
-[https://github.com/esling/atiam_ml](https://github.com/esling/atiam_ml)
-
-**Please pull this repo regularly for the time of the course development to stay updated**
-
-The code is in Python (notebooks impending) and relies heavily on the concept of [code sections](https://fr.mathworks.com/help/matlab/matlab_prog/run-sections-of-programs.html) which allows you to evaluate only part of the code (to avoid running long import tasks multiple times and concentrate on the question at hand.
-
-Get the baseline MATLAB code for all tutorials from this [zip file ![](../images/file.png)](https://nuage.ircam.fr/index.php/s/F6QlLPgABOVJQRI)
-
-Get the baseline Python code for all tutorials from this [zip file ![](../images/file.png)](../documents/Exercices_Python.zip)
-
-Get the baseline Jupyter notebooks code for all tutorials from this [zip file ![](../images/file.png)](../documents/Exercices_Python.zip)
-
-</div>{: .notice--blank}
+Along the tutorials, we provide a reference code for each section. This code contains helper functions that will alleviate you from the burden of data import and other sideline implementations. You will find designated spaces in each file to develop your solutions. The code is in Python (notebooks impending) and relies heavily on the concept of [code sections](https://fr.mathworks.com/help/matlab/matlab_prog/run-sections-of-programs.html) which allows you to evaluate only part of the code (to avoid running long import tasks multiple times and concentrate on the question at hand.
 
 ### Dependencies
-
-<div markdown = "1">
 
 #### Python installation
 
