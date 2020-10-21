@@ -1,5 +1,25 @@
 import numpy as np
+import matplotlib as mpl
 import matplotlib.pyplot as plt
+
+def hdr_plot_style():
+    mpl.rcParams.update({'font.size': 18, 'lines.linewidth': 3, 'lines.markersize': 15})
+    # avoid type 3 (i.e. bitmap) fonts in figures
+    mpl.rcParams['ps.useafm'] = True
+    mpl.rcParams['pdf.use14corefonts'] = True
+    mpl.rcParams['text.usetex'] = True
+    mpl.rcParams['font.family'] = 'sans-serif'
+    mpl.rcParams['font.sans-serif'] = 'Courier New'
+    mpl.rcParams['text.hinting'] = False
+    # Set colors cycle
+    colors = mpl.cycler('color', ['#3388BB', '#EE6666', '#9988DD', '#EECC55', '#88BB44', '#FFBBBB'])
+    plt.rc('axes', facecolor='#FFFFFF88', edgecolor='white', axisbelow=True, grid=True, prop_cycle=colors)
+    plt.rc('legend', facecolor='#666666BB', edgecolor='white', fontsize=16)
+    plt.rc('grid', color='white', linestyle='solid')
+    plt.rc('text', color='white')
+    plt.rc('xtick', direction='out', color='white')
+    plt.rc('ytick', direction='out', color='white')
+    plt.rc('patch', edgecolor='#E6E6E6')
 
 # define function that allows to generate a number of sub plots in a single line with the given titles
 def prep_plots(titles, fig_size, fig_num=1):
@@ -8,8 +28,9 @@ def prep_plots(titles, fig_size, fig_num=1):
     as a list
     """
     # first close possibly existing old figures, if you dont' do this Juyter Lab will coplain after a while when it collects more than 20 existing ficgires for the same cell
-    plt.close(fig_num)
+    # plt.close(fig_num)
     # create a new figure
+    hdr_plot_style()
     fig=plt.figure(fig_num, figsize=fig_size)
     ax_list = []
     for ind, title in enumerate(titles, start=1):
@@ -30,8 +51,9 @@ def finalize_plots(axes_list, legend=True, fig_title=None):
         if legend:
             ax.legend()
 
-def plotPatterns(P,D):
+def plot_patterns(P,D):
     """ Plots the decision boundary of a single neuron with 2-dimensional inputs """
+    hdr_plot_style()
     nPats = P.shape[1]
     nUnits = D.shape[0]
     if nUnits < 2:
@@ -58,7 +80,7 @@ def plotPatterns(P,D):
     ax.grid(True)
     return fig
 
-def plotBoundary(W,iVal,style,fig):
+def plot_boundary(W,iVal,style,fig):
     """ Plots (bi-dimensionnal) input patterns """
     nUnits = W.shape[0]
     colors = plt.cm.inferno_r.colors[1::3]
