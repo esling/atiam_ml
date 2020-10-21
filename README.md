@@ -6,6 +6,15 @@ This repository contains the most up to date courses in machine learning applied
 
 Please first follow the installation procedure (see next section) to ensure that you have all necessary libraries to follow the course smoothly. You also need to get the audio datasets from this [link ![](../images/file.png)](https://nuage.ircam.fr/index.php/s/FTsaaAMFV1jEwsk)   
 
+## Structure of the course
+
+- [00 - Introduction](00_introduction.pdf)
+- [01 - Machine learning](01_machine_learning.pdf)
+    - [Notebook - machine learning](01_machine_learning.ipynb)
+- [02 - Neural networks](02_neural_networks.pdf)
+    - [Notebook - neural networks](02a_neural_networks.ipynb)
+    - [Notebook - advanced networks](02b_advanced_networks.ipynb)
+
 ## Installation and dependencies
 
 
