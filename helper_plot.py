@@ -92,3 +92,57 @@ def plot_boundary(W,iVal,style,fig):
             color = colors[int((3 * iVal + 9) % len(colors))]
         plt.plot(xLims,(-np.dot(W[i, 1], xLims) - W[i, 0]) / W[i, 2], linestyle=style, color=color, linewidth=1.5);
         fig.canvas.draw()
+        
+def visualize_boundary_linear(X, y, model):
+# VISUALIZEBOUNDARYLINEAR plots a linear decision boundary learned by the SVM
+#   VISUALIZEBOUNDARYLINEAR(X, y, model) plots a linear decision boundary 
+#   learned by the SVM and overlays the data on it
+    hdr_plot_style()
+    w = model["w"]
+    b = model["b"]
+    xp = np.linspace(np.min(X[:, 0]), np.max(X[:, 0]), 100).transpose()
+    yp = - (w[0] * xp + b) / w[1]
+    plt.figure(figsize=(12, 8))
+    pos = (y == 1)[:, 0] 
+    neg = (y == -1)[:, 0]
+    plt.scatter(X[pos, 0], X[pos, 1], marker='x', linewidths=2, s=23, c=[0, 0.5, 0])
+    plt.scatter(X[neg, 0], X[neg, 1], marker='o', linewidths=2, s=23, c=[1, 0, 0])
+    plt.plot(xp, yp, '-b')
+    plt.scatter(model["X"][:, 0], model["X"][:, 1], marker='o', linewidths=4, s=40, c=None, edgecolors=[0.1, 0.1, 0.1])
+    
+def plot_data(X, y):
+    #PLOTDATA Plots the data points X and y into a new figure 
+    #   PLOTDATA(x,y) plots the data points with + for the positive examples
+    #   and o for the negative examples. X is assumed to be a Mx2 matrix.
+    #
+    # Note: This was slightly modified such that it expects y = 1 or y = 0
+    hdr_plot_style()
+    # Find Indices of Positive and Negative Examples
+    pos = (y == 1)[:, 0] 
+    neg = (y == 0)[:, 0]
+    # Plot Examples
+    fig = plt.figure(figsize=(12, 8))
+    plt.scatter(X[pos, 0], X[pos, 1], marker='x', edgecolor='k', linewidths=2, s=50, c=[0, 0.5, 0])
+    plt.scatter(X[neg, 0], X[neg, 1], marker='o', edgecolor='k', linewidths=2, s=50, c=[1, 0, 0])
+    return fig
+
+def visualize_boundary(X, y, model):
+    #VISUALIZEBOUNDARY plots a non-linear decision boundary learned by the SVM
+    #   VISUALIZEBOUNDARYLINEAR(X, y, model) plots a non-linear decision 
+    #   boundary learned by the SVM and overlays the data on it
+    hdr_plot_style()
+    # Plot the training data on top of the boundary
+    plot_data(X, y)
+    
+    # Make classification predictions over a grid of values
+    x1plot = np.linspace(np.min(X[:, 0]), np.max(X[:, 0]), 100).transpose()
+    x2plot = np.linspace(np.min(X[:, 1]), np.max(X[:, 1]), 100).transpose()
+    [X1, X2] = np.meshgrid(x1plot, x2plot)
+    vals = np.zeros(X1.shape)
+    for i in range(X1.shape[1]):
+        this_X = np.vstack((X1[:, i], X2[:, i]))
+        vals[:, i] = svmPredict(model, this_X)
+    # Plot the SVM boundary
+    plt.contour(X1, X2, vals, [1, 1], c='b')
+    # Plot the support vectors
+    plt.scatter(model["X"][:, 0], model["X"][:, 1], marker='o', linewidths=4, s=10, c=[0.1, 0.1, 0.1])

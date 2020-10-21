@@ -10,7 +10,8 @@ Please first follow the installation procedure (see next section) to ensure that
 
 - [00 - Introduction](00_introduction.pdf)
 - [01 - Machine learning](01_machine_learning.pdf)
-    - [Notebook - machine learning](01_machine_learning.ipynb)
+    - [Notebook - machine learning](01a_machine_learning.ipynb)
+    - [Notebook - feature-based learning](01b_feature_based_learning.ipynb)
 - [02 - Neural networks](02_neural_networks.pdf)
     - [Notebook - neural networks](02a_neural_networks.ipynb)
     - [Notebook - advanced networks](02b_advanced_networks.ipynb)
