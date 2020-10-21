@@ -14,6 +14,16 @@ Please first follow the installation procedure (see next section) to ensure that
 - [02 - Neural networks](02_neural_networks.pdf)
     - [Notebook - neural networks](02a_neural_networks.ipynb)
     - [Notebook - advanced networks](02b_advanced_networks.ipynb)
+- [03 - Support Vector Machines]
+- [04 - Probabilities and distributions]
+- [05 - Bayesian inference]
+- [06 - Latent models and Expectation-Maximization (EM)]
+- [07 - Gaussian Mixtures Models (GMM)]
+- [08 - Approximate inference (sampling and variational)]
+- [09 - Deep learning general]
+- [10 - Variational Auto-Encoder (VAE) and flows]
+- [11 - Adversarial learning]
+- [12 - Audio applications (project)]
 
 ## Installation and dependencies
 
