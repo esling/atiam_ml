@@ -4,7 +4,7 @@ This repository contains the most up to date courses in machine learning applied
 
 **As the development of this course is ongoing, please pull this repo regularly to stay updated. Also, please do not hesitate to post issues if you spot any mistake :)**
 
-Please first follow the installation procedure (see next section) to ensure that you have all necessary libraries to follow the course smoothly. You also need to get the audio datasets from this [link ![](../images/file.png)](https://nuage.ircam.fr/index.php/s/FTsaaAMFV1jEwsk)   
+Please first follow the installation procedure (see next section) to ensure that you have all necessary libraries to follow the course smoothly. You also need to get the audio datasets from this [link ![](../images/file.png)](https://nubo.ircam.fr/index.php/s/oRHRMCYNDXc5cWJ)   
 
 ## Structure of the course
 
