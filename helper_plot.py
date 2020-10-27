@@ -77,7 +77,7 @@ def plot_patterns(P,D):
     #Dcopy[Dcopy == 0] = 1
     for i in range(nPats):
         c = Dcopy[i]
-        ax.scatter(P[0,i], P[1,i], marker=symbols[c], c=colors[c], s=50, linewidths=2, edgecolor='k')
+        ax.scatter(P[0,i], P[1,i], marker=symbols[c], c=colors[c], s=50, linewidths=2, edgecolor='w')
     #ax.legend()
     ax.grid(True)
     return fig
@@ -89,7 +89,7 @@ def plot_boundary(W,iVal,style,fig):
     xLims = plt.gca().get_xlim()
     for i in range(nUnits):
         if len(style) == 1:
-            color = [0, 0, 0];
+            color = [1, 1, 1];
         else:
             color = colors[int((3 * iVal + 9) % len(colors))]
         plt.plot(xLims,(-np.dot(W[i, 1], xLims) - W[i, 0]) / W[i, 2], linestyle=style, color=color, linewidth=1.5);

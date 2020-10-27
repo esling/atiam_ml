@@ -105,6 +105,8 @@ def compute_transforms(dataStruct, verbose = False):
         sig, sr = librosa.load(dataStruct["filenames"][f], mono=True, offset=0)
         if (sr != refSr):
             sig = librosa.resample(sig, sr, (sr/2))
+        print(len(sig))
+        print(fSize)
         dataStruct["signal"].append(sig)
         dataStruct["srate"].append(sr)
         # Compute the FFT 
