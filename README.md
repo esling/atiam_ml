@@ -15,7 +15,8 @@ Please first follow the installation procedure (see next section) to ensure that
 - [02 - Neural networks](02_neural_networks.pdf)
     - [Notebook - neural networks](02a_neural_networks.ipynb)
     - [Notebook - advanced networks](02b_advanced_networks.ipynb)
-- [03 - Support Vector Machines]
+- [03 - Support Vector Machines](03_support_vector_machines.pdf)
+    - [Notebook - support vector machines](03_support_vector_machines.ipynb)
 - [04 - Probabilities and distributions]
 - [05 - Bayesian inference]
 - [06 - Latent models and Expectation-Maximization (EM)]
