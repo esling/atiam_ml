@@ -8,7 +8,7 @@ def hdr_plot_style():
     # avoid type 3 (i.e. bitmap) fonts in figures
     mpl.rcParams['ps.useafm'] = True
     mpl.rcParams['pdf.use14corefonts'] = True
-    mpl.rcParams['text.usetex'] = True
+    mpl.rcParams['text.usetex'] = False
     mpl.rcParams['font.family'] = 'sans-serif'
     mpl.rcParams['font.sans-serif'] = 'Courier New'
     mpl.rcParams['text.hinting'] = False
@@ -135,7 +135,6 @@ def visualize_boundary(X, y, model):
     hdr_plot_style()
     # Plot the training data on top of the boundary
     plot_data(X, y)
-    
     # Make classification predictions over a grid of values
     x1plot = np.linspace(np.min(X[:, 0]), np.max(X[:, 0]), 100).transpose()
     x2plot = np.linspace(np.min(X[:, 1]), np.max(X[:, 1]), 100).transpose()
@@ -148,3 +147,30 @@ def visualize_boundary(X, y, model):
     plt.contour(X1, X2, vals, [1, 1], c='b')
     # Plot the support vectors
     plt.scatter(model["X"][:, 0], model["X"][:, 1], marker='o', linewidths=4, s=10, c=[0.1, 0.1, 0.1])
+    
+def plot_svc_decision_function(model, ax=None, plot_support=True):
+    """Plot the decision function for a 2D SVC"""
+    if ax is None:
+        ax = plt.gca()
+    xlim = ax.get_xlim()
+    ylim = ax.get_ylim()
+    
+    # create grid to evaluate model
+    x = np.linspace(xlim[0], xlim[1], 30)
+    y = np.linspace(ylim[0], ylim[1], 30)
+    Y, X = np.meshgrid(y, x)
+    xy = np.vstack([X.ravel(), Y.ravel()]).T
+    P = model.decision_function(xy).reshape(X.shape)
+    
+    # plot decision boundary and margins
+    ax.contour(X, Y, P, colors='w',
+               levels=[-1, 0, 1], alpha=0.9,
+               linestyles=['--', '-', '--'])
+    
+    # plot support vectors
+    if plot_support:
+        ax.scatter(model.support_vectors_[:, 0],
+                   model.support_vectors_[:, 1],
+                   s=300, linewidth=2, edgecolor='w', facecolors='none');
+    ax.set_xlim(xlim)
+    ax.set_ylim(ylim)
