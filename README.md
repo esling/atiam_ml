@@ -17,7 +17,9 @@ Please first follow the installation procedure (see next section) to ensure that
     - [Notebook - advanced networks](02b_advanced_networks.ipynb)
 - [03 - Support Vector Machines](03_support_vector_machines.pdf)
     - [Notebook - support vector machines](03_support_vector_machines.ipynb)
-- [04 - Probabilities and distributions]
+- [04 - Probabilities and distributions](04_probabilities_and_distributions.pdf)
+    - [Notebook - probabilities](04a_probabilities.ipynb)
+    - [Notebook - distributions](04b_distributions.ipynb)
 - [05 - Bayesian inference]
 - [06 - Latent models and Expectation-Maximization (EM)]
 - [07 - Gaussian Mixtures Models (GMM)]
