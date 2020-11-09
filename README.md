@@ -20,7 +20,8 @@ Please first follow the installation procedure (see next section) to ensure that
 - [04 - Probabilities and distributions](04_probabilities_and_distributions.pdf)
     - [Notebook - probabilities](04a_probabilities.ipynb)
     - [Notebook - distributions](04b_distributions.ipynb)
-- [05 - Bayesian inference]
+- [05 - Bayesian inference](05_bayesian_inference.pdf)
+    - [Notebook - Bayesian inference](05a_bayesian_inference.ipynb)
 - [06 - Latent models and Expectation-Maximization (EM)]
 - [07 - Gaussian Mixtures Models (GMM)]
 - [08 - Approximate inference (sampling and variational)]
