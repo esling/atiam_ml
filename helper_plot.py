@@ -1,6 +1,10 @@
 import numpy as np
 import matplotlib as mpl
 import matplotlib.pyplot as plt
+import torch
+from sklearn.mixture import GaussianMixture
+import torch.distributions as distribution
+from matplotlib.patches import Ellipse
 
 def hdr_plot_style():
     plt.style.use('dark_background')
@@ -174,3 +178,172 @@ def plot_svc_decision_function(model, ax=None, plot_support=True):
                    s=300, linewidth=2, edgecolor='w', facecolors='none');
     ax.set_xlim(xlim)
     ax.set_ylim(ylim)
+    
+
+def plot_gaussian_ellipsoid(m, C, sdwidth=1, npts=None, axh=None, color='r'):
+    # PLOT_GAUSSIAN_ELLIPSOIDS plots 2-d and 3-d Gaussian distributions
+    #
+    # H = PLOT_GAUSSIAN_ELLIPSOIDS(M, C) plots the distribution specified by 
+    #  mean M and covariance C. The distribution is plotted as an ellipse (in 
+    #  2-d) or an ellipsoid (in 3-d).  By default, the distributions are 
+    #  plotted in the current axes. 
+
+    # PLOT_GAUSSIAN_ELLIPSOIDS(M, C, SD) uses SD as the standard deviation 
+    #  along the major and minor axes (larger SD => larger ellipse). By 
+    #  default, SD = 1. 
+    # PLOT_GAUSSIAN_ELLIPSOIDS(M, C, SD, NPTS) plots the ellipse or 
+    #  ellipsoid with a resolution of NPTS 
+    #
+    # PLOT_GAUSSIAN_ELLIPSOIDS(M, C, SD, NPTS, AX) adds the plot to the
+    #  axes specified by the axis handle AX.
+    #
+    # Examples: 
+    # -------------------------------------------
+    #  # Plot three 2-d Gaussians
+    #  figure; 
+    #  h1 = plot_gaussian_ellipsoid([1 1], [1 0.5; 0.5 1]);
+    #  h2 = plot_gaussian_ellipsoid([2 1.5], [1 -0.7; -0.7 1]);
+    #  h3 = plot_gaussian_ellipsoid([0 0], [1 0; 0 1]);
+    #  set(h2,'color','r'); 
+    #  set(h3,'color','g');
+    # 
+    #  # "Contour map" of a 2-d Gaussian
+    #  figure;
+    #  for sd = [0.3:0.4:4],
+    #    h = plot_gaussian_ellipsoid([0 0], [1 0.8; 0.8 1], sd);
+    #  end
+    #
+    #  # Plot three 3-d Gaussians
+    #  figure;
+    #  h1 = plot_gaussian_ellipsoid([1 1  0], [1 0.5 0.2; 0.5 1 0.4; 0.2 0.4 1]);
+    #  h2 = plot_gaussian_ellipsoid([1.5 1 .5], [1 -0.7 0.6; -0.7 1 0; 0.6 0 1]);
+    #  h3 = plot_gaussian_ellipsoid([1 2 2], [0.5 0 0; 0 0.5 0; 0 0 0.5]);
+    #  set(h2,'facealpha',0.6);
+    #  view(129,36); set(gca,'proj','perspective'); grid on; 
+    #  grid on; axis equal; axis tight;
+    # -------------------------------------------
+    # 
+    #  Gautam Vallabha, Sep-23-2007, Gautam.Vallabha@mathworks.com
+
+    #  Revision 1.0, Sep-23-2007
+    #    - File created
+    #  Revision 1.1, 26-Sep-2007
+    #    - NARGOUT==0 check added.
+    #    - Help added on NPTS for ellipsoids
+    
+    if axh is None:
+        axh = plt.gca()
+    if m.size != len(m): 
+        raise Exception('M must be a vector'); 
+    if (m.size == 2):
+        h = show2d(m[:], C, sdwidth, npts, axh, color)
+    elif (m.size == 3):
+        h = show3d(m[:], C, sdwidth, npts, axh, color)
+    else:
+        raise Exception('Unsupported dimensionality');
+    return h
+
+#-----------------------------
+def show2d(means, C, sdwidth, npts=None, axh=None, color='r'):
+    if (npts is None):
+        npts = 50
+    # plot the gaussian fits
+    tt = np.linspace(0, 2 * np.pi, npts).transpose()
+    x = np.cos(tt);
+    y = np.sin(tt);
+    ap = np.vstack((x[:], y[:])).transpose()
+    v, d = np.linalg.eigvals(C)
+    d = sdwidth / np.sqrt(d) # convert variance to sdwidth*sd
+    bp = np.dot(v, np.dot(d, ap)) + means
+    h = axh.plot(bp[:, 0], bp[:, 1], ls='-', color=color)
+    return h
+
+#-----------------------------
+def show3d(means, C, sdwidth, npts=None, axh=None):
+    if (npts is None):
+        npts = 20
+    x, y, z = sphere(npts);
+    ap = np.concatenate((x[:], y[:], z[:])).transpose()
+    v, d = eigvals(C)
+    if any(d[:] < 0):
+        print('warning: negative eigenvalues')
+        d = np.max(d, 0)
+    d = sdwidth * np.sqrt(d); # convert variance to sdwidth*sd
+    bp = (v * d * ap) + repmat(means, 1, size(ap,2)); 
+    xp = reshape(bp[0,:], size(x));
+    yp = reshape(bp[1,:], size(y));
+    zp = reshape(bp[2,:], size(z));
+    h = axh.surf(xp, yp, zp);
+    return h
+
+def fit_multivariate_gaussian(X_s):
+    gmm = GaussianMixture(n_components=1).fit(X_s)
+    labels = gmm.predict(X_s)
+    N = 50
+    X = np.linspace(-2, 10, N)
+    Y = np.linspace(-4, 4, N)
+    X, Y = np.meshgrid(X, Y)
+    # Pack X and Y into a single 3-dimensional array
+    pos = np.empty(X.shape + (2,))
+    pos[:, :, 0] = X
+    pos[:, :, 1] = Y
+    norm = distribution.MultivariateNormal(torch.Tensor(gmm.means_[0]), torch.Tensor(gmm.covariances_[0]))
+    Z = torch.exp(norm.log_prob(torch.Tensor(pos))).numpy()
+    plt.figure(figsize=(10, 8));
+    ax = plt.gca()
+    cset = ax.contourf(X, Y, Z, cmap='magma')
+    plt.scatter(X_s[:, 0], X_s[:, 1], c='b', s=60, edgecolor='w', zorder=2.5); plt.grid(True);
+    return labels
+
+def fit_gaussian_mixture(X_s):
+    gmm = GaussianMixture(n_components=4).fit(X_s)
+    labels = gmm.predict(X_s)
+    N = 50
+    X = np.linspace(-2, 10, N)
+    Y = np.linspace(-4, 4, N)
+    X, Y = np.meshgrid(X, Y)
+    # Pack X and Y into a single 3-dimensional array
+    pos = np.empty(X.shape + (2,))
+    pos[:, :, 0] = X
+    pos[:, :, 1] = Y
+    Z = np.zeros((pos.shape[0], pos.shape[1]))
+    for i in range(4):
+        norm = distribution.MultivariateNormal(torch.Tensor(gmm.means_[i]), torch.Tensor(gmm.covariances_[i]))
+        Z += torch.exp(norm.log_prob(torch.Tensor(pos))).numpy()
+    plt.figure(figsize=(10, 8));
+    ax = plt.gca()
+    cset = ax.contourf(X, Y, Z, cmap='magma')
+    plt.scatter(X_s[:, 0], X_s[:, 1], c='b', s=60, edgecolor='w', zorder=2.5); plt.grid(True);
+    return labels
+
+def draw_ellipse(position, covariance, ax=None, **kwargs):
+    """Draw an ellipse with a given position and covariance"""
+    ax = ax or plt.gca()
+    
+    # Convert covariance to principal axes
+    if covariance.shape == (2, 2):
+        U, s, Vt = np.linalg.svd(covariance)
+        angle = np.degrees(np.arctan2(U[1, 0], U[0, 0]))
+        width, height = 2 * np.sqrt(s)
+    else:
+        angle = 0
+        width, height = 2 * np.sqrt(covariance)
+    
+    # Draw the Ellipse
+    for nsig in range(1, 4):
+        ax.add_patch(Ellipse(position, nsig * width, nsig * height,
+                             angle, **kwargs))
+        
+def plot_gmm(gmm, X, label=True, ax=None):
+    plt.figure(figsize=(10,8))
+    ax = ax or plt.gca()
+    labels = gmm.fit(X).predict(X)
+    if label:
+        ax.scatter(X[:, 0], X[:, 1], c=labels, s=40, cmap='magma', edgecolor='gray', zorder=2)
+    else:
+        ax.scatter(X[:, 0], X[:, 1], s=40, zorder=2)
+    ax.axis('equal')
+    
+    w_factor = 0.4 / gmm.weights_.max()
+    for pos, covar, w in zip(gmm.means_, gmm.covariances_, gmm.weights_):
+        draw_ellipse(pos, covar, alpha=w * w_factor)
