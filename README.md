@@ -24,7 +24,7 @@ Please first follow the installation procedure (see next section) to ensure that
     - [Notebook - Bayesian inference](05a_bayesian_inference.ipynb)
 - [06 - Latent models and Expectation-Maximization (EM)](06_latent_expectation_maximization.pdf)
     - [Notebook - Latent clustering and kMeans](06a_latent_models.ipynb)
-- [07 - Gaussian Mixtures Models (GMM)]
+- [07 - Gaussian Mixtures Models (GMM)](07_gaussian_mixture_models.pdf)
     - [Notebook - Gaussian Mixture Models](07_gaussian_mixture_models.ipynb)
 - [08 - Approximate inference (sampling and variational)]
 - [09 - Deep learning general]
