@@ -10,24 +10,27 @@ Please first follow the installation procedure (see next section) to ensure that
 
 - [00 - Introduction](00_introduction.pdf)
 - [01 - Machine learning](01_machine_learning.pdf)
-    - [Notebook - machine learning](01a_machine_learning.ipynb)
-    - [Notebook - feature-based learning](01b_feature_based_learning.ipynb)
+    - [Notebook - Machine learning](01a_machine_learning.ipynb)
+    - [Notebook - Feature-based learning](01b_feature_based_learning.ipynb)
 - [02 - Neural networks](02_neural_networks.pdf)
-    - [Notebook - neural networks](02a_neural_networks.ipynb)
-    - [Notebook - advanced networks](02b_advanced_networks.ipynb)
+    - [Notebook - Neural networks](02a_neural_networks.ipynb)
+    - [Notebook - Advanced networks](02b_advanced_networks.ipynb)
 - [03 - Support Vector Machines](03_support_vector_machines.pdf)
-    - [Notebook - support vector machines](03_support_vector_machines.ipynb)
+    - [Notebook - Support vector machines](03_support_vector_machines.ipynb)
 - [04 - Probabilities and distributions](04_probabilities_and_distributions.pdf)
-    - [Notebook - probabilities](04a_probabilities.ipynb)
-    - [Notebook - distributions](04b_distributions.ipynb)
+    - [Notebook - Probabilities](04a_probabilities.ipynb)
+    - [Notebook - Distributions](04b_distributions.ipynb)
 - [05 - Bayesian inference](05_bayesian_inference.pdf)
     - [Notebook - Bayesian inference](05a_bayesian_inference.ipynb)
 - [06 - Latent models and Expectation-Maximization (EM)](06_latent_expectation_maximization.pdf)
     - [Notebook - Latent clustering and kMeans](06a_latent_models.ipynb)
 - [07 - Gaussian Mixtures Models (GMM)](07_gaussian_mixture_models.pdf)
     - [Notebook - Gaussian Mixture Models](07_gaussian_mixture_models.ipynb)
-- [08 - Approximate inference (sampling and variational)]
-- [09 - Deep learning general]
+- [08 - Approximate inference (sampling and variational)](08_approximate_inference.ipynb)
+    - [Notebook - Sampling](08a_sampling_mcmc.ipynb)
+- [09 - Deep learning general](09_deep_learning_pytorch.pdf)
+    - [Notebook - Auto-encoders](09a_auto_encoders.ipynb)
+    - [Notebook - Pytorch](09b_pytorch.ipynb)
 - [10 - Variational Auto-Encoder (VAE) and flows]
 - [11 - Adversarial learning]
 - [12 - Audio applications (project)]
