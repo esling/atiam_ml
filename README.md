@@ -31,7 +31,9 @@ Please first follow the installation procedure (see next section) to ensure that
 - [09 - Deep learning general](09_deep_learning_pytorch.pdf)
     - [Notebook - Auto-encoders](09a_auto_encoders.ipynb)
     - [Notebook - Pytorch](09b_pytorch.ipynb)
-- [10 - Variational Auto-Encoder (VAE) and flows]
+- [10 - Variational Auto-Encoder (VAE) and flows](10_variational_ae_flows.pdf)
+    - [Notebook - Variational auto-encoders](10a_variational_auto_encoders.ipynb)
+    - [Notebook - Normalizing flows](10b_normalizing_flows.ipynb)
 - [11 - Adversarial learning]
 - [12 - Audio applications (project)]
 
