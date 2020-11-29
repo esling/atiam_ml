@@ -34,7 +34,8 @@ Please first follow the installation procedure (see next section) to ensure that
 - [10 - Variational Auto-Encoder (VAE) and flows](10_variational_ae_flows.pdf)
     - [Notebook - Variational auto-encoders](10a_variational_auto_encoders.ipynb)
     - [Notebook - Normalizing flows](10b_normalizing_flows.ipynb)
-- [11 - Adversarial learning]
+- [11 - Adversarial learning](11_adversarial_learning.pdf)
+    - [Notebook - Normalizing flows](11a_generative_adversarial_network.ipynb)
 - [12 - Audio applications (project)]
 
 ## Installation and dependencies
