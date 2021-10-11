@@ -15,7 +15,7 @@ def hdr_plot_style():
     mpl.rcParams['text.usetex'] = False
     mpl.rcParams['font.family'] = 'sans-serif'
     mpl.rcParams['font.sans-serif'] = 'Courier New'
-    mpl.rcParams['text.hinting'] = False
+    #mpl.rcParams['text.hinting'] = False
     # Set colors cycle
     colors = mpl.cycler('color', ['#3388BB', '#EE6666', '#9988DD', '#EECC55', '#88BB44', '#FFBBBB'])
     #plt.rc('figure', facecolor='#00000000', edgecolor='black')
