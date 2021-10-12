@@ -81,7 +81,7 @@ def plot_patterns(P,D):
     #Dcopy[Dcopy == 0] = 1
     for i in range(nPats):
         c = Dcopy[i]
-        ax.scatter(P[0,i], P[1,i], marker=symbols[c], c=colors[c], s=50, linewidths=2, edgecolor='w')
+        ax.scatter(P[0,i], P[1,i], marker=symbols[c], c=np.array(colors[c]).reshape(1,-1), s=50, linewidths=2, edgecolor='w')
     #ax.legend()
     ax.grid(True)
     return fig

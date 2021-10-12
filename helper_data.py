@@ -86,7 +86,7 @@ def compute_transforms(dataStruct, verbose = False):
     hSize = fSize//4
     refSr = 44100
     # Constant-Q settings
-    fMin = librosa.note_to_hz('C1')
+    fMin = librosa.note_to_hz('C2')
     nBins = 60 * 2
     # Number of files
     fullNbFiles = len(dataStruct["filenames"])
@@ -98,6 +98,8 @@ def compute_transforms(dataStruct, verbose = False):
     dataStruct["spectrum_chroma"] = []
     dataStruct["spectrum_CQT"] = []
     print('    - Performing transforms.');
+    import warnings
+    warnings.filterwarnings('ignore')
     # Perform an analysis of spectral transform for each
     for f in range(fullNbFiles):
         if (verbose):
@@ -105,8 +107,6 @@ def compute_transforms(dataStruct, verbose = False):
         sig, sr = librosa.load(dataStruct["filenames"][f], mono=True, offset=0)
         if (sr != refSr):
             sig = librosa.resample(sig, sr, (sr/2))
-        print(len(sig))
-        print(fSize)
         dataStruct["signal"].append(sig)
         dataStruct["srate"].append(sr)
         # Compute the FFT 
