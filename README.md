@@ -1,4 +1,4 @@
-# Music Machine Learning - ATIAM
+# Music Machine Learning - ATIAM banane pasteque yolo
 
 This repository contains the most up to date courses in machine learning applied to music computing given along the ATIAM Masters at IRCAM. The courses slides along with a set of interactive Jupyter Notebooks will be updated along the year to provide all the ML program.
 
